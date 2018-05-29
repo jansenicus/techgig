@@ -37,30 +37,40 @@ Round the value to the nearest integer and print it.
 def valid_type(x, dtype):
 
     if dtype == 'float':
-        try: x=float(x); v = True;
-        except: v = False;
+        try: x=float(x); v = True
+        except: v = False
     
     if dtype == 'integer':
-        try: x=int(x); v = True;
-        except: v = False;
+        try: x=int(x); v = True
+        except: v = False
 
     return v,x
 
-def valid_input(dtype):
+def valid_range(x, vrange):
+    xmin, xmax = vrange[0], vrange[1]
+    if (x>=xmin) and (x <= xmax):
+        v = True
+    else:
+        #print('number out of range! Please insert between ' + str(xmin) + '~' +str(xmax))
+        v = False
+    return v
+
+def valid_input(dtype, vrange):
     while True:
         x = raw_input()
         v,x = valid_type(x, dtype)
-        if v: 
-            print('valid input type: '+str(type(x)))
+        if v and valid_range(x, vrange): 
+            #print('valid input type: '+str(type(x)))
             break
         else: pass
     
     return x
 
 def main():
-    a = valid_input('float')
-    b = valid_input('integer')
-    c = valid_input('integer')
+    vrange = (1, 1000)
+    a = valid_input('float', vrange) # must be type of double
+    b = valid_input('integer', vrange) # as type of integer
+    c = valid_input('integer', vrange) # as type of integer
 
     # (principal * interest * year)
     principal, interest, year = a, b, c
@@ -68,6 +78,6 @@ def main():
     # simple interest
     si = (principal * interest * year)/100
 
-    print('{:.0f}'.format(round(si, 2)))
+    print('{:.0f}'.format(si))
 
 main()
