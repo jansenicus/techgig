@@ -2,19 +2,22 @@
 
 def main():
 
-    x = input()
+    x = raw_input()
 
     def valid(x):
-        if len(x) < = 10000
+        if len(x) <= 10000:
             v = True
         else:
             v = False
 
-    while True:
+        return v
 
-        v = valid(x):
+    while True:
+        v = valid(x)
         if v: 
-            print('Hello Techgig\n'=x)
+            print('Hello Techgig\n'+(x))
             break
         else:
-            x = input()
+            x = raw_input()
+
+main()
